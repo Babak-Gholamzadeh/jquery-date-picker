@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Date Picker</title>
+    <link rel="stylesheet" href="css/jquery-date-picker.css" />
+    <style>
+      body {
+        height: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="date-wrapper">
+      <input type="text" class="date-output" />
+      <input type="text" class="time-output" />
+    </div>
+    <br />
+    <div class="date-wrapper2">
+      <input type="text" class="date-output" />
+      <input type="text" class="time-output" />
+    </div>
+    <br />
+    <div class="date-wrapper3">
+      <input type="text" class="date-output" />
+      <input type="text" class="time-output" />
+    </div>
+
+
+    <!-- <div class="date-picker-container show">
+      <div class="date-picker-wrapper">
+        <div class="top-section">
+          <div class="date-section">
+            <div class="years">
+              <ul class="years-list">
+                <li>2018</li class="selected">
+                <li class="selected">2019</li class="selected">
+                <li>2020</li>
+              </ul>
+            </div>
+            <div class="months">
+              <ul class="months-list">
+                <li class="selected">jan</li>
+                <li>feb</li>
+                <li>mar</li>
+                <li>apr</li>
+                <li>may</li>
+              </ul>
+            </div>
+            <div class="days">
+              <ul class="days-list">
+                <li data-week="su" class="holiday">01</li>
+                <li data-week="mo">02</li>
+                <li data-week="tu">03</li>
+                <li data-week="we" class="selected">04</li>
+                <li data-week="th">05</li>
+                <li data-week="fr">06</li>
+                <li data-week="sa" class="holiday">07</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-section">
+          <div class="time-section">
+            <div class="clock">
+              <div class="hour">12</div>
+              <div class="minute">34</div>
+            </div>
+          </div>
+          <div class="button-section">
+            <button>DONE</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-date-picker.js"></script>
+    <script>
+      $(document).ready(function() {
+        $(".date-wrapper").datePicker({
+          dateInput: "5/31/2018", // mm/dd/yyyy
+          dateOutput: $(".date-wrapper .date-output"),
+          timeInput: "15:46", // hh:mm
+          timeOutput: $(".date-wrapper .time-output")
+        });
+        // $(".date-wrapper2").datePicker({
+        //   dateInput: "1/24/2018", // mm/dd/yyyy
+        //   dateOutput: $(".date-wrapper2 .date-output")
+        // });
+        // $(".date-wrapper3").datePicker({
+        //   dateOutput: $(".date-wrapper3 .date-output"),
+        //   timeOutput: $(".date-wrapper3 .time-output")
+        // });
+      });
+    </script>
+  </body>
+</html>

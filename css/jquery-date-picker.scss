@@ -1,0 +1,214 @@
+@import "./fonts";
+
+.date-picker-container {
+  position: fixed;
+  z-index: 10000000;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+  direction: ltr;
+  --bg-selected-color: #0088ff;
+  --text-selected-color: #fef9f5;
+  --bg-color: #fdfdfd;
+  --text-color: #c1c1c1;
+  --holiday-color: #d44c32;
+  * {
+    box-sizing: border-box;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .date-picker-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 0 0 35px 5px rgba(#000, 0.15);
+    width: 400px;
+    max-width: calc(100% - 20px);
+    height: 300px;
+    max-height: calc(100vh - 20px);
+    overflow: hidden;
+    user-select: none;
+    transition: all 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    .top-section {
+      order: 1;
+      height: calc(100% * 330 / 450);
+      .date-section {
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-color);
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        text-transform: capitalize;
+        box-shadow: inset 0 -20px 35px -30px rgba(#000, 0.3);
+        .years {
+          order: 1;
+          width: 100%;
+          height: 40%;
+          // background-color: red;
+          --item-count: 3;
+          font-size: 34px;
+        }
+        .months {
+          order: 2;
+          height: 30%;
+          // background-color: green;
+          --item-count: 5;
+          font-size: 25px;
+        }
+        .days {
+          order: 3;
+          height: 30%;
+          // background-color: blue;
+          --item-count: 7;
+          font-size: 16px;
+          .days-list {
+            li {
+              &::before {
+                content: attr(data-week);
+                font-family: Roboto;
+                font-size: 11px;
+                font-weight: 300;
+                line-height: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: var(--text-color);
+              }
+            }
+          }
+        }
+        ul {
+          // display: flex;
+          // justify-content: space-between;
+          overflow: hidden;
+          height: 100%;
+          position: relative;
+          // border: 1px solid red;
+          li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate3d(calc(100% * (var(--item-index) - var(--item-threshold))), 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 3px;
+            min-width: calc(100% / var(--item-count));
+            max-width: calc(100% / var(--item-count));
+            height: 100%;
+            color: var(--text-color);
+            font-family: Nunito;
+            cursor: pointer;
+            transition: all .2s ease-out;
+            &.holiday {
+              color: var(--holiday-color);
+            }
+            &:hover {
+              color: var(--bg-selected-color);
+            }
+            &.selected {
+              background-color: var(--bg-selected-color);
+              color: var(--text-selected-color);
+              &::before {
+                color: var(--text-selected-color) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .bottom-section {
+      order: 2;
+      height: calc(100% * 120 / 450);
+      display: flex;
+      overflow: hidden;
+      background-color: var(--bg-selected-color);
+      .time-section {
+        order: 1;
+        flex: 1;
+        height: 100%;
+        background-color: var(--bg-color);
+        border: 4px solid var(--bg-selected-color);
+        border-bottom-left-radius: 7px;
+        .clock {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: Nunito;
+          font-size: 28px;
+          color: var(--text-color);
+          &::before {
+            content: ':';
+            padding: 0 5px;
+            order: 2;
+          }
+          > div {
+            cursor: pointer;
+            transition: all .2s linear;
+            padding: 5px 10px;
+            border-radius: 3px;
+            width: 55px;
+            &:hover {
+              color: var(--bg-selected-color);
+            }
+            &.selected {
+              background-color: var(--bg-selected-color);
+              color: var(--text-selected-color);
+            }
+          }
+          .hours {
+            order: 1;
+          }
+          .minutes {
+            order: 3;
+          }
+        }
+      }
+      .button-section {
+        order: 2;
+        flex: 1;
+        height: 100%;
+        border: 4px solid var(--bg-selected-color);
+        border-bottom-right-radius: 7px;
+        button {
+          background-color: var(--bg-selected-color);
+          width: 100%;
+          height: 100%;
+          outline: none;
+          border: none;
+          padding: 0;
+          margin: 0;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--text-selected-color);
+          font-family: Roboto;
+          letter-spacing: 5px;
+          font-size: 18px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+  &.show {
+    pointer-events: auto;
+    opacity: 1;
+    // .date-picker-wrapper {
+    //   transform: translate(-50%, -50%);
+    // }
+  }
+}
